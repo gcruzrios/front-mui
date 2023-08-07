@@ -9,10 +9,13 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Index from "./templates/dashboard/Dashboard";
-import Login from "./templates/sign-in-side/SignInSide";
-import Registro from "./templates/sign-up/SignUp";
-import NotFound from "./templates/sticky-footer/StickyFooter";
+import Index from "./pages/Dashboard";
+import Login from "./pages/SignInSide";
+import Registro from "./pages/SignUp";
+import NotFound from "./pages/StickyFooter";
+import AddContact from './pages/AddContact';
+import EditContact from './pages/EditContact';
+import Machote from './pages/Machote';
 
 const estaAutenticado = () => {
   const token = localStorage.getItem("Token");
@@ -37,8 +40,11 @@ function App() {
         <Route path="/registro" exact element={<Registro />} />
               
         <Route path="/index" exact element={estaAutenticado() ? <Index /> : <Navigate to="/" />} />
+        
+        <Route path="/addcontacto" exact element={estaAutenticado() ? <AddContact/> : <Navigate to="/" />} />
+        <Route path="/editcontacto" exact element={estaAutenticado() ? <EditContact/> : <Navigate to="/" />} />
+        <Route path="/machote" exact element={estaAutenticado() ? <Machote/> : <Navigate to="/" />} />
         {/*
-        <Route path="/addcontact" exact element={estaAutenticado() ? <AddContact/> : <Navigate to="/" />} />
         <Route path="/editcontact/:id" exact element={estaAutenticado() ? <EditContact/> : <Navigate to="/" />} />
         <Route path="/detailcontact/:id" exact element={estaAutenticado() ? <DetalleContact/> : <Navigate to="/" />} /> 
         */}
