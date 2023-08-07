@@ -19,12 +19,10 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
-export default function Orders() {
+export default function ListUsuarios() {
   const [obsSeleccionado, setobsSeleccionado] = useState({
     id: 1,
-    nombre: "",
-    telefono: "",
-    celular: "",
+    nombreUsuario: "",
     email: "",
     fechaCreacion: "0001-01-01T00:00:00",
   });
@@ -37,13 +35,13 @@ export default function Orders() {
   const peticionGet = async () => {
     //const idUsuario = localStorage.getItem('idUsuario');
 
-    await axios.get("/api/contactos").then((response) => {
+    await axios.get("/api/usuarios").then((response) => {
       setData(response.data);
     });
   };
 
   const eliminar_completo = async (id) => {
-    const respuesta = await axios.delete(`api/contactos/${id}`);
+    const respuesta = await axios.delete(`api/usuarios/${id}`);
     peticionGet();
   };
   const handleDelete = async (id) => {
@@ -59,14 +57,14 @@ export default function Orders() {
         eliminar_completo(id);
         Swal.fire("Contacto borrado!", "", "success");
       } else if (result.isDenied) {
-        Swal.fire("El contacto no ha sido borrado", "", "info");
+        Swal.fire("El usuario no ha sido borrado", "", "info");
       }
     });
   };
   const handleEdit = async(id) => {
     localStorage.setItem('Id', id);
 
-      window.location.href = "/editcontacto";
+      window.location.href = "/editusuario";
     console.log(obsSeleccionado);
   };
 
@@ -87,15 +85,15 @@ export default function Orders() {
 
   return (
     <React.Fragment>
-      <Title>Lista de Contactos</Title>
+      <Title>Usuarios</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell>ID</TableCell>
             <TableCell>Nombre</TableCell>
-            <TableCell>Telefono</TableCell>
-            <TableCell>Celular</TableCell>
+            
             <TableCell>Email</TableCell>
+            <TableCell>Rol</TableCell>
             <TableCell>Fecha</TableCell>
             <TableCell align="right">Acciones</TableCell>
           </TableRow>
@@ -104,10 +102,10 @@ export default function Orders() {
           {selectedItems.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.id}</TableCell>
-              <TableCell>{row.nombre}</TableCell>
-              <TableCell>{row.telefono}</TableCell>
-              <TableCell>{row.celular}</TableCell>
+              <TableCell>{row.nombreUsuario}</TableCell>
               <TableCell>{row.email}</TableCell>
+              <TableCell>{row.role}</TableCell>
+              
               <TableCell>{row.fechaCreacion}</TableCell>
               <TableCell>
               {/* <Button
@@ -150,7 +148,7 @@ export default function Orders() {
       </Table>
      
       <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-        Ver más contactos
+        Ver más usuarios
       </Link>
     </React.Fragment>
   );

@@ -16,7 +16,8 @@ import NotFound from "./pages/StickyFooter";
 import AddContact from './pages/AddContact';
 import EditContact from './pages/EditContact';
 import Machote from './pages/Machote';
-
+import Usuarios from './pages/Usuarios';
+import AddUsuario from './pages/AddUsuario';
 const estaAutenticado = () => {
   const token = localStorage.getItem("Token");
   
@@ -44,6 +45,9 @@ function App() {
         <Route path="/addcontacto" exact element={estaAutenticado() ? <AddContact/> : <Navigate to="/" />} />
         <Route path="/editcontacto" exact element={estaAutenticado() ? <EditContact/> : <Navigate to="/" />} />
         <Route path="/machote" exact element={estaAutenticado() ? <Machote/> : <Navigate to="/" />} />
+        
+        <Route path="/usuarios" exact element={estaAutenticado() ? <Usuarios/> : <Navigate to="/" />} />
+        <Route path="/addusuario" exact element={estaAutenticado() ? <AddUsuario/> : <Navigate to="/" />} />
         {/*
         <Route path="/editcontact/:id" exact element={estaAutenticado() ? <EditContact/> : <Navigate to="/" />} />
         <Route path="/detailcontact/:id" exact element={estaAutenticado() ? <DetalleContact/> : <Navigate to="/" />} /> 
