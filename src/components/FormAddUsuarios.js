@@ -70,7 +70,7 @@ export default function FormAddUsuarios() {
         icon: "success",
       });
 
-      window.location.href = "/index";
+      window.location.href = "/usuarios";
     }
   };
 
