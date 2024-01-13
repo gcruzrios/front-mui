@@ -41,7 +41,7 @@ function App() {
         <Route path="/registro" exact element={<Registro />} />
               
         <Route path="/index" exact element={estaAutenticado() ? <Index /> : <Navigate to="/" />} />
-        
+        <Route path="/contactos" exact element={estaAutenticado() ? <Index /> : <Navigate to="/" />} />
         <Route path="/addcontacto" exact element={estaAutenticado() ? <AddContact/> : <Navigate to="/" />} />
         <Route path="/editcontacto" exact element={estaAutenticado() ? <EditContact/> : <Navigate to="/" />} />
         <Route path="/machote" exact element={estaAutenticado() ? <Machote/> : <Navigate to="/" />} />

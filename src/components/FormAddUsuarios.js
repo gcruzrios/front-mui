@@ -154,8 +154,10 @@ export default function FormAddUsuarios() {
                   label="Role"
                   name="role"
                   autoComplete="role"
+                  placeholder="Role"
                   onChange={(e) => setRole(e.target.value)}
                 >
+                  
                   <MenuItem value="Admin">Admin</MenuItem>
                   <MenuItem value="Sales">Sales</MenuItem>
                   <MenuItem value="IT">IT</MenuItem>

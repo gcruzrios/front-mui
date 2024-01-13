@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'http://minimal.test';
+//axios.defaults.baseURL = 'https://minimal-api7.azurewebsites.net';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
