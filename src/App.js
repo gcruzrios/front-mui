@@ -12,6 +12,8 @@ import {
 import Index from "./pages/Dashboard";
 import Login from "./pages/SignInSide";
 import Registro from "./pages/SignUp";
+import Reset from "./pages/Reset";
+
 import NotFound from "./pages/StickyFooter";
 import AddContact from './pages/AddContact';
 import EditContact from './pages/EditContact';
@@ -39,7 +41,7 @@ function App() {
         <Route path="/" exact element={<Login />} />
          
         <Route path="/registro" exact element={<Registro />} />
-              
+        <Route path="/reset" exact element={<Reset />} />
         <Route path="/index" exact element={estaAutenticado() ? <Index /> : <Navigate to="/" />} />
         <Route path="/contactos" exact element={estaAutenticado() ? <Index /> : <Navigate to="/" />} />
         <Route path="/addcontacto" exact element={estaAutenticado() ? <AddContact/> : <Navigate to="/" />} />
