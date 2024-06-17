@@ -1,4 +1,8 @@
-import * as React from 'react';
+
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +16,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 function Copyright(props) {
   return (
@@ -31,6 +38,49 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+
+  const [nombreUsuario, setNombreUsuario] = useState("");
+  const [password, setPassword] = useState("");
+  const [cpassword, setCpassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
+
+  const handleAdd = async (e) => {
+    e.preventDefault();
+
+    const usuario = { nombreUsuario, email, password, role };
+
+    console.log(usuario);
+
+    const response = await axios.post(`/api/usuarios`, usuario);
+    const mensaje = response.data;
+    console.log(mensaje);
+
+    if (password === cpassword){
+    
+      if (mensaje === null) {
+        Swal.fire({
+          text: "Error insertando usuario..",
+          icon: "error",
+        });
+      } else {
+        Swal.fire({
+          text: "Usuario insertado con éxito..",
+          icon: "success",
+        });
+  
+        window.location.href = "/index";
+      }
+    }else{
+      Swal.fire({
+        text: "Error Passwords no coinciden",
+        icon: "error",
+      });
+    }
+
+    
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -69,6 +119,7 @@ export default function SignUp() {
                   id="Name"
                   label="Nombre"
                   autoFocus
+                  onChange={(e) => setNombreUsuario(e.target.value)}
                 />
               </Grid>
               
@@ -80,6 +131,7 @@ export default function SignUp() {
                   label="Email"
                   name="email"
                   autoComplete="email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -91,6 +143,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               
@@ -103,7 +156,27 @@ export default function SignUp() {
                   type="password"
                   id="cpassword"
                   autoComplete="new-password"
+                  onChange={(e) => setCpassword(e.target.value)}
                 />
+              </Grid>
+              <Grid item xs={12}>
+                <Select
+                  
+                  required
+                  fullWidth
+                  id="role"
+                  label="Role"
+                  name="role"
+                  autoComplete="role"
+                  placeholder="Role"
+                  onChange={(e) => setRole(e.target.value)}
+                >
+                  <MenuItem value="Sales">Sales</MenuItem>
+                  <MenuItem value="IT">IT</MenuItem>
+                  <MenuItem value="External">User</MenuItem>
+                </Select>
+                
+
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
@@ -117,6 +190,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleAdd}
             >
               Sign Up
             </Button>

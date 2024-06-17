@@ -161,6 +161,7 @@ export default function FormAddUsuarios() {
                   <MenuItem value="Admin">Admin</MenuItem>
                   <MenuItem value="Sales">Sales</MenuItem>
                   <MenuItem value="IT">IT</MenuItem>
+                  <MenuItem value="External">User</MenuItem>
                 </Select>
                 
 
