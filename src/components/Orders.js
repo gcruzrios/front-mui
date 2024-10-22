@@ -24,9 +24,9 @@ export default function Orders() {
     id: 1,
     nombre: "",
     telefono: "",
-    celular: "",
     email: "",
-    fechaCreacion: "0001-01-01T00:00:00",
+    empresa:"",
+    usuario:""
   });
 
   // jefe:localStor
@@ -35,15 +35,15 @@ export default function Orders() {
   const [data, setData] = useState([]);
 
   const peticionGet = async () => {
-    //const idUsuario = localStorage.getItem('idUsuario');
+    const idUsuario = localStorage.getItem('idUsuario');
 
-    await axios.get("/api/contactos").then((response) => {
+    await axios.get(`api/contacto/obtenercontactos/${idUsuario}`).then((response) => {
       setData(response.data);
     });
   };
 
   const eliminar_completo = async (id) => {
-    const respuesta = await axios.delete(`api/contactos/${id}`);
+    const respuesta = await axios.delete(`api/contacto/borrarcontacto/${id}`);
     peticionGet();
   };
   const handleDelete = async (id) => {
@@ -93,10 +93,10 @@ export default function Orders() {
           <TableRow>
             <TableCell>ID</TableCell>
             <TableCell>Nombre</TableCell>
-            <TableCell>Telefono</TableCell>
-            <TableCell>Celular</TableCell>
             <TableCell>Email</TableCell>
-            <TableCell>Fecha</TableCell>
+            <TableCell>Telefono</TableCell>
+            <TableCell>Empresa</TableCell>
+            
             <TableCell align="right">Acciones</TableCell>
           </TableRow>
         </TableHead>
@@ -105,10 +105,11 @@ export default function Orders() {
             <TableRow key={row.id}>
               <TableCell>{row.id}</TableCell>
               <TableCell>{row.nombre}</TableCell>
-              <TableCell>{row.telefono}</TableCell>
-              <TableCell>{row.celular}</TableCell>
               <TableCell>{row.email}</TableCell>
-              <TableCell>{row.fechaCreacion}</TableCell>
+           
+              <TableCell>{row.telefono}</TableCell>
+              <TableCell>{row.empresa}</TableCell>
+             
               <TableCell>
               {/* <Button
                 type="submit"

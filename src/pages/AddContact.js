@@ -92,6 +92,7 @@ const defaultTheme = createTheme();
 
 export default function AddContact() {
   const Token = localStorage.getItem("Token");
+  const Nombre = localStorage.getItem("nombreUsuario");
   const [menu, setMenu] = useState(false);
   const [nombre, setNombre] = useState("");
   const [role, setRole] = useState("");
@@ -159,7 +160,7 @@ export default function AddContact() {
             sx={{ flexGrow: 0 }}
             >
               
-             {nombre} 
+             {Nombre} 
             </Typography>
             <Button
                 type="submit"

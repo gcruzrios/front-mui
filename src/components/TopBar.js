@@ -14,6 +14,10 @@ function TopBar() {
     window.location.href = "/";
   };
   const Token = localStorage.getItem("Token");
+  const Nombre = localStorage.getItem("nombreUsuario");
+  
+  console.log(Nombre);
+  
   const [menu, setMenu] = useState(false);
   const [nombre, setNombre] = useState("");
   const [role, setRole] = useState("");
@@ -48,7 +52,7 @@ function TopBar() {
         noWrap
         sx={{ flexGrow: 1 }}
       >
-         {nombre}
+         {Nombre}
       </Typography>
       {/* <IconButton color="inherit">
         <Badge badgeContent={4} color="secondary">

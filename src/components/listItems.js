@@ -11,7 +11,13 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 
+
+const role = localStorage.getItem("role");
+
 export const mainListItems = (
+
+  
+
   <React.Fragment>
     <ListItemButton to="/index">
       <ListItemIcon>
@@ -31,18 +37,24 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Agregar Contacto" />
     </ListItemButton>
+    { role ==="Admin" ? 
     <ListItemButton to="/usuarios">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Usuarios" />
-    </ListItemButton>
+    </ListItemButton> : ""} 
+    
+    { role ==="Admin" ? 
+
     <ListItemButton to="/addusuario">
       <ListItemIcon>
       <GroupAddIcon />
       </ListItemIcon>
       <ListItemText primary="Agregar Usuario" />
     </ListItemButton>
+     : ""} 
+
     <ListItemButton>
       <ListItemIcon>
         <BarChartIcon />
