@@ -101,9 +101,9 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {selectedItems.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.id}</TableCell>
+          {selectedItems.map((row,i) => (
+            <TableRow key={row._id}>
+              <TableCell>{i}</TableCell>
               <TableCell>{row.nombre}</TableCell>
               <TableCell>{row.email}</TableCell>
            
@@ -127,7 +127,7 @@ export default function Orders() {
                 color = "primary"
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={()=>handleEdit(row.id)}
+                onClick={()=>handleEdit(row._id)}
                 size="small"
                             
                 >
@@ -138,7 +138,7 @@ export default function Orders() {
                 color = "error"
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={()=>handleDelete(row.id)}
+                onClick={()=>handleDelete(row._id)}
                 size="small"         
                 >
                 Borrar

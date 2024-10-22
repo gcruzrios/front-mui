@@ -38,17 +38,17 @@ export default function FormAddContact() {
 
   const [nombre, setNombre] = useState("");
   const [telefono, setTelefono] = useState("");
-  const [celular, setCelular] = useState("");
+  const [empresa, setEmpresa] = useState("");
   const [email, setEmail] = useState("");
-
+  const usuario = localStorage.getItem("idUsuario");
   const handleAdd = async (e) => {
     e.preventDefault();
 
-    const contacto = { nombre, telefono, celular, email };
+    const contacto = { nombre, telefono, empresa, email, usuario };
     
     console.log(contacto);
 
-    const response = await axios.post(`/api/contactos`, contacto);
+    const response = await axios.post(`/api/contacto/agregarcontacto`, contacto);
     const mensaje = response.data;
     console.log(mensaje);
     
@@ -125,11 +125,11 @@ export default function FormAddContact() {
                 <TextField
                   required
                   fullWidth
-                  id="celular"
-                  label="Celular"
-                  name="celular"
+                  id="empresa"
+                  label="Empresa"
+                  name="empresa"
                   autoComplete="family-name"
-                  onChange={(e) => setCelular(e.target.value)}
+                  onChange={(e) => setEmpresa(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
