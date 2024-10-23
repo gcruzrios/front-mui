@@ -26,7 +26,7 @@ return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Sistema MUI React
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -183,12 +183,12 @@ export default function SignInSide() {
               <Grid container>
                 <Grid item xs>
                   <Link href="/reset" variant="body2">
-                    Forgot password?
+                    Olvido el password?
                   </Link>
                 </Grid>
                 <Grid item>
                   <Link href="/registro" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"No tiene cuenta aún? Registrarse"}
                   </Link>
                 </Grid>
               </Grid>

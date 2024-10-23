@@ -38,18 +38,20 @@ export default function FormEditContact() {
   const [telefono, setTelefono] = useState("");
   const [celular, setCelular] = useState("");
   const [email, setEmail] = useState("");
+  const [empresa, setEmpresa] = useState("");
+  
   const id = localStorage.getItem("Id");
   
   const GetContact = async () => {
     
-    const response = await axios.get(`/api/contactos/${id}`);
+    const response = await axios.get(`/api/contacto/obtenercontacto/${id}`);
     const mensaje = response.data;
    
-    setNombre(mensaje.nombre);
-    setTelefono(mensaje.telefono);
-    setCelular(mensaje.celular);
-    setEmail(mensaje.email);
-        
+    setNombre(mensaje[0].nombre);
+    setTelefono(mensaje[0].telefono);
+    setCelular(mensaje[0].celular);
+    setEmail(mensaje[0].email);
+    setEmpresa(mensaje[0].empresa);    
     console.log(mensaje);
     
   }
@@ -60,7 +62,7 @@ export default function FormEditContact() {
 //    const token = data.Token;
 //    localStorage.setItem("Token", token);
 
-    const contacto = { nombre, telefono, celular, email };
+    const contacto = { nombre, telefono, celular, email, empresa };
     
     console.log(contacto);
 
@@ -68,7 +70,7 @@ export default function FormEditContact() {
     //     "Content-Type": "application/json", headers: { Authorization: 'No Auth' } 
     // });
 
-    const response = await axios.put(`/api/contactos/${id}`, contacto);
+    const response = await axios.put(`/api/contacto/actualizarcontacto/${id}`, contacto);
 
     
     
@@ -151,18 +153,7 @@ export default function FormEditContact() {
                   onChange={(e) => setTelefono(e.target.value)}
                 />
               </Grid>
-              <Grid item xs={12} sm={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="celular"
-                  label="Celular"
-                  name="celular"
-                  autoComplete="family-name"
-                  value={celular} 
-                  onChange={(e) => setCelular(e.target.value)}
-                />
-              </Grid>
+              
               <Grid item xs={12}>
                 <TextField
                   required
@@ -175,6 +166,20 @@ export default function FormEditContact() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
+
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="empresa"
+                  label="Empresa"
+                  name="empresa"
+                  autoComplete="family-name"
+                  value={empresa} 
+                  onChange={(e) => setEmpresa(e.target.value)}
+                />
+              </Grid>
+
               {/* 
               <Grid item xs={12}>
                 <TextField

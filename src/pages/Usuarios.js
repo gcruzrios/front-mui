@@ -88,6 +88,7 @@ const defaultTheme = createTheme();
 export default function Dashboard() {
 
   const Token = localStorage.getItem('Token');
+  const Nombre = localStorage.getItem("nombreUsuario");
   const [menu, setMenu] = useState(false);
   const [nombre, setNombre] = useState('');
   const [role, setRole] = useState('');
@@ -157,7 +158,7 @@ const Logout = () => {
             sx={{ flexGrow: 0 }}
             >
               
-             {nombre} 
+             {Nombre} 
             </Typography>
             <Button
                 type="submit"

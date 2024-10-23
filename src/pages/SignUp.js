@@ -39,20 +39,21 @@ const defaultTheme = createTheme();
 
 export default function SignUp() {
 
-  const [nombreUsuario, setNombreUsuario] = useState("");
+  const [nombre, setNombre] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
+  const [telefono, setTelefono] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
 
   const handleAdd = async (e) => {
     e.preventDefault();
 
-    const usuario = { nombreUsuario, email, password, role };
+    const usuario = { nombre, email, telefono, password, role };
 
     console.log(usuario);
 
-    const response = await axios.post(`/api/usuarios`, usuario);
+    const response = await axios.post(`/api/usuario/agregarusuario`, usuario);
     const mensaje = response.data;
     console.log(mensaje);
 
@@ -119,7 +120,7 @@ export default function SignUp() {
                   id="Name"
                   label="Nombre"
                   autoFocus
-                  onChange={(e) => setNombreUsuario(e.target.value)}
+                  onChange={(e) => setNombre(e.target.value)}
                 />
               </Grid>
               
@@ -134,6 +135,18 @@ export default function SignUp() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="telefono"
+                  label="Telefono"
+                  name="telefono"
+                  autoComplete="telefono"
+                  onChange={(e) => setTelefono(e.target.value)}
+                />
+              </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -192,12 +205,12 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 2 }}
               onClick={handleAdd}
             >
-              Sign Up
+              Registrarse
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/" variant="body2">
-                  Already have an account? Sign in
+                  Tiene cuenta? Login
                 </Link>
               </Grid>
             </Grid>

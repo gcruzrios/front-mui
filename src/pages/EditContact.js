@@ -98,6 +98,7 @@ export default function EditContact() {
 
 
   const Token = localStorage.getItem("Token");
+  const Nombre = localStorage.getItem("nombreUsuario");
   const [menu, setMenu] = useState(false);
   const [nombre, setNombre] = useState("");
   const [role, setRole] = useState("");
@@ -166,7 +167,7 @@ export default function EditContact() {
             sx={{ flexGrow: 0 }}
             >
               
-             {nombre} 
+             {Nombre} 
             </Typography>
             <Button
                 type="submit"

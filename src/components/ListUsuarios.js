@@ -22,9 +22,9 @@ function preventDefault(event) {
 export default function ListUsuarios() {
   const [obsSeleccionado, setobsSeleccionado] = useState({
     id: 1,
-    nombreUsuario: "",
+    nombre: "",
     email: "",
-    fechaCreacion: "0001-01-01T00:00:00",
+    telefono:""
   });
 
   // jefe:localStor
@@ -35,13 +35,13 @@ export default function ListUsuarios() {
   const peticionGet = async () => {
     //const idUsuario = localStorage.getItem('idUsuario');
 
-    await axios.get("/api/usuarios").then((response) => {
+    await axios.get("/api/usuario/obtenerusuarios").then((response) => {
       setData(response.data);
     });
   };
 
   const eliminar_completo = async (id) => {
-    const respuesta = await axios.delete(`api/usuarios/${id}`);
+    const respuesta = await axios.delete(`api/usuario/borrarusuario/${id}`);
     peticionGet();
   };
   const handleDelete = async (id) => {
@@ -93,20 +93,24 @@ export default function ListUsuarios() {
             <TableCell>Nombre</TableCell>
             
             <TableCell>Email</TableCell>
+            
+            <TableCell>Telefono</TableCell>
             <TableCell>Rol</TableCell>
-            <TableCell>Fecha</TableCell>
+            
             <TableCell align="right">Acciones</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {selectedItems.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.id}</TableCell>
-              <TableCell>{row.nombreUsuario}</TableCell>
+          {selectedItems.map((row,i) => (
+            <TableRow key={row._id}>
+              <TableCell>{i}</TableCell>
+              <TableCell>{row.nombre}</TableCell>
               <TableCell>{row.email}</TableCell>
+              <TableCell>{row.telefono}</TableCell>
+              
               <TableCell>{row.role}</TableCell>
               
-              <TableCell>{row.fechaCreacion}</TableCell>
+              
               <TableCell>
               {/* <Button
                 type="submit"
@@ -119,7 +123,7 @@ export default function ListUsuarios() {
                 >
                 Detalle
               </Button> */}
-              <Button
+              {/* <Button
                 type="submit"
                 color = "primary"
                 variant="contained"
@@ -129,7 +133,7 @@ export default function ListUsuarios() {
                             
                 >
                 Editar
-              </Button>
+              </Button> */}
               <Button
                 type="submit"
                 color = "error"
