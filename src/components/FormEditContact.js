@@ -36,7 +36,7 @@ export default function FormEditContact() {
 
   const [nombre, setNombre] = useState("");
   const [telefono, setTelefono] = useState("");
-  const [celular, setCelular] = useState("");
+  
   const [email, setEmail] = useState("");
   const [empresa, setEmpresa] = useState("");
   
@@ -49,7 +49,7 @@ export default function FormEditContact() {
    
     setNombre(mensaje[0].nombre);
     setTelefono(mensaje[0].telefono);
-    setCelular(mensaje[0].celular);
+    
     setEmail(mensaje[0].email);
     setEmpresa(mensaje[0].empresa);    
     console.log(mensaje);
@@ -62,7 +62,7 @@ export default function FormEditContact() {
 //    const token = data.Token;
 //    localStorage.setItem("Token", token);
 
-    const contacto = { nombre, telefono, celular, email, empresa };
+    const contacto = { nombre, telefono, email, empresa };
     
     console.log(contacto);
 

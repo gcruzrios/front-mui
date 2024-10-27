@@ -43,7 +43,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function FormAddUsuarios() {
-  const [nombreUsuario, setNombreUsuario] = useState("");
+  const [nombre, setNombreUsuario] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
@@ -51,7 +51,7 @@ export default function FormAddUsuarios() {
   const handleAdd = async (e) => {
     e.preventDefault();
 
-    const usuario = { nombreUsuario, email, password, role };
+    const usuario = { nombre, email, password, role };
 
     console.log(usuario);
 
@@ -117,7 +117,7 @@ export default function FormAddUsuarios() {
                   id="nombre"
                   label="Nombre Usuario"
                   autoFocus
-                  onChange={(e) => setNombreUsuario(e.target.value)}
+                  onChange={(e) => setNombre(e.target.value)}
                 />
               </Grid>
 
